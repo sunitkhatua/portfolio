@@ -1,28 +1,41 @@
 import "./WorkCardStyles.css";
 import WorkCard from "./WorkCard";
-import WorkCardData from "./WorkCardData";
-import React from 'react'
+// import WorkCardData from "./WorkCardData";
+import { useEffect, useState } from "react";
 
 
 const Work = () => {
-  return (
+  const [projectData, setProjectData] = useState([]);
+  const email = "sunitkhatua320@gmail.com";
+
+  useEffect(()=>{
+    fetch(`http://localhost:8000/get-project/${email}`)
+    .then((res)=>{
+      if (!res.ok)
+        throw new Error("Failed to fetch project data");
+      return res.json();
+    })
+    .then((data)=>setProjectData(data))
+    .catch((err)=>console.error("Fetch error". err));
+  },[email]);
+
+return(
     <div className="work-container">
         <h1 className="project-heading">Projects</h1>
         <div className="project-container">
-            {WorkCardData.map((val, ind) =>{
-                return(
-                <WorkCard
-                key={ind}
-                imgsrc={val.imgsrc}
-                title={val.title}
-                text={val.text}
-                view={val.view}
+          {projectData.length>0 ? (projectData.map((proj, index)=>(
+            <WorkCard
+                key={index}
+                // imgsrc="https://via.placeholder.com/300"
+                title={proj.title}
+                text={proj.description}
+                view={proj.github}
                 />
-                )
-            })}
+          ))
+        ):(<p>No project found</p>)}
         </div>
     </div>
-  )
+    );
 };
 
 export default Work

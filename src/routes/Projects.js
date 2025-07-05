@@ -3,7 +3,7 @@ import React from 'react'
 import Navbar from "../components/Navbar";
 import Footer from '../components/Footer';
 import HeroImg2 from '../components/HeroImg2';
-import PricingCard from '../components/PricingCard';
+// import PricingCard from '../components/PricingCard';
 import Work from '../components/Work';
 
 const Projects = () => {
@@ -12,7 +12,7 @@ const Projects = () => {
       <Navbar/>
       <HeroImg2 heading="PROJECTS." text="This is my projects" />
       <Work/>
-      <PricingCard/>
+      {/* <PricingCard/> */}
       <Footer/>
     </div>
   );
