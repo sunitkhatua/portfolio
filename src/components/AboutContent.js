@@ -1,32 +1,32 @@
-import "./AboutContentStyles.css"
-import React from 'react'
-import { Link } from "react-router-dom"
-import img1 from "../assets/about1.jpg"
-import img2 from "../assets/about2.jpg"
+import "./AboutContentStyles.css";
+import { useEffect, useState } from "react";
+import AboutCard from "./AboutCard";
+
 const AboutContent = () => {
+  const [otherData, setOtherData] = useState(null);
+  const email = "sunitkhatua320@gmail.com";
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/get-other-details?email=${email}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch other details");
+        return res.json();
+      })
+      .then((data) => setOtherData(data))
+      .catch((err) => console.error("Fetch error:", err));
+  }, [email]);
+
   return (
     <div className="about">
-        <div className="left">
-            <h1>Who am I?</h1>
-            <p>I am a react front-end developer. I create 
-                responsive secure website for my clents.
-            </p>
-            <Link tp="/contact">
-                <button className="btn">Contact</button>
-            </Link>
-        </div>
-        <div className="right">
-            <div className="img-container">
-                <div className="img-stack top">
-                    <img src={img1} className="img" alt="img"/>
-                </div>
-                <div className="img-stack bottom">
-                    <img src={img2} className="img" alt="img"/>
-                </div>
-            </div>
-        </div>
+      <div className="summary">
+        {otherData && otherData.summary ? (
+          <AboutCard text={otherData.summary} />
+        ) : (
+          <p>No Other Details found</p>
+        )}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default AboutContent
+export default AboutContent;

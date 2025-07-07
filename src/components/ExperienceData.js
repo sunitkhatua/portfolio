@@ -15,11 +15,24 @@ const ExperienceData = () => {
       .catch((err) => console.error("Fetch error:", err));
   }, [email]);
 
+  // Returns current date in YYYY-MM format (e.g. 2025-07)
   const getTodayMMYYYY = () => {
     const now = new Date();
     const month = (now.getMonth() + 1).toString().padStart(2, '0');
     const year = now.getFullYear();
     return `${year}-${month}`;
+  };
+
+  // Converts "2024-03" -> "Mar, 2024"
+  const formatMonthYear = (ym) => {
+    if (!ym) return "";
+    const [year, month] = ym.split("-");
+    const monthNames = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    const monthIndex = parseInt(month, 10) - 1;
+    return `${monthNames[monthIndex]}, ${year}`;
   };
 
   return (
@@ -28,16 +41,18 @@ const ExperienceData = () => {
       <div>
         {experienceData.length > 0 ? (
           experienceData.map((exp, index) => {
-            const toDate = exp.currently_working ? getTodayMMYYYY() : exp.to_date;
+            const fromDateFormatted = formatMonthYear(exp.from_date);
+            const rawToDate = exp.currently_working ? getTodayMMYYYY() : exp.to_date;
+            const toDateFormatted = exp.currently_working ? "Present" : formatMonthYear(rawToDate);
 
             return (
               <ExperienceCard
                 key={index}
                 company={exp.company}
                 designation={exp.designation}
-                description ={exp.description}
-                from_date={exp.from_date}
-                to_date={toDate}
+                description={exp.description}
+                from_date={fromDateFormatted}
+                to_date={toDateFormatted}
               />
             );
           })

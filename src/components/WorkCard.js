@@ -1,5 +1,5 @@
-import "./WorkCardStyles.css"
-import React from 'react'
+import "./WorkCardStyles.css";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 const WorkCard = (props) => {
@@ -8,13 +8,22 @@ const WorkCard = (props) => {
       {/* <img src={props.imgsrc} alt= "Image"/> */}
       <h2 className="project-title">{props.title}</h2>
       <div className="pro-details">
-      <p>{props.text}</p> 
-      <div className="pro-btn">
-        <NavLink to={props.view} className="btn">Source Code</NavLink>
+        <p>{props.text}</p>
+        <div className="pro-btn">
+          {props.view && props.view.trim() !== "" && (
+            <NavLink
+              to={props.view}
+              className="btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Source Code
+            </NavLink>
+          )}
+        </div>
       </div>
-      </div>            
     </div>
-  )
+  );
 };
 
-export default WorkCard
+export default WorkCard;
