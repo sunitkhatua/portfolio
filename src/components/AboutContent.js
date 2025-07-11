@@ -18,13 +18,14 @@ const AboutContent = () => {
 
   return (
     <div className="about">
-      <div className="summary">
-        {otherData && otherData.summary ? (
-          <AboutCard text={otherData.summary} />
-        ) : (
-          <p>No Other Details found</p>
-        )}
-      </div>
+      {otherData && otherData.summary ? (
+        <AboutCard
+          text={otherData.summary}
+          certifications={otherData.certifications}
+        />
+      ) : (
+        <p>No Other Details found</p>
+      )}
     </div>
   );
 };

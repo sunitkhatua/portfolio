@@ -1,3 +1,4 @@
+/* ✅ Original styles — UNCHANGED */
 .about {
   display: flex;
   justify-content: center;
@@ -36,4 +37,52 @@
   color: #e0e0e0;
   text-align: justify;
   white-space: pre-line; /* preserves line breaks if text includes \n */
+}
+
+/* ✅ New additions start here */
+.about-content-wrapper {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px;
+  flex-wrap: wrap;
+}
+
+/* Right-side Certifications panel */
+.certification-panel {
+  min-width: 250px;
+  background: #2a2a2a;
+  padding: 24px;
+  border-radius: 16px;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.certification-panel h2 {
+  font-size: 1.4rem;
+  color: #00d8ff;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #00d8ff;
+  padding-bottom: 4px;
+}
+
+.certification-panel ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.certification-panel li {
+  margin-bottom: 10px;
+}
+
+.certification-panel a {
+  color: #00d8ff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.certification-panel a:hover {
+  text-decoration: underline;
 }
