@@ -1,24 +1,43 @@
 import { useEffect, useState } from "react";
-import AboutCard from "./AboutCard";
+import SkillsCard from "./SkillsCard";
+import "./AboutContentStyles.css";
 
 const Skills = () => {
-  const [skills, setSkills] = useState([]);
+  const [skillsData, setSkillsData] = useState([]);
   const email = "sunitkhatua320@gmail.com";
 
   useEffect(() => {
+    console.log("📡 Calling skills API...");
     fetch(`http://localhost:8000/get-skills/${email}`)
       .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch skills");
+        console.log("✅ Response status:", res.status);
         return res.json();
       })
-      .then((data) => setSkills(data))
-      .catch((err) => console.error("Fetch error:", err));
-  }, [email]);
+      .then((data) => {
+        console.log("✅ Skills data:", data);
+        setSkillsData(data);
+      })
+      .catch((err) => {
+        console.error("❌ Error fetching skills:", err);
+      });
+  }, []);
 
   return (
-    <div className="skills">
-      <h1 className="text-2xl font-bold mb-4">Skills</h1>
-      <AboutCard skills={skills} />
+    <div className="skills-wrapper">
+      <div className="skills-panel">
+        <h2 className="skills-heading">Skills</h2>
+        {skillsData.length > 0 ? (
+          skillsData.map((item, index) => (
+            <SkillsCard
+              key={index}
+              category={item.category}
+              skills={item.skills}
+            />
+          ))
+        ) : (
+          <p style={{ color: "white" }}>No skills found</p>
+        )}
+      </div>
     </div>
   );
 };

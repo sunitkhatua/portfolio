@@ -25,7 +25,7 @@
 .summary h1 {
   font-size: 2rem;
   margin-bottom: 16px;
-  color: #00d8ff; /* accent color */
+  color: #00d8ff;
   border-bottom: 2px solid #00d8ff;
   display: inline-block;
   padding-bottom: 4px;
@@ -36,28 +36,33 @@
   line-height: 1.8;
   color: #e0e0e0;
   text-align: justify;
-  white-space: pre-line; /* preserves line breaks if text includes \n */
+  white-space: pre-line;
 }
 
-/* ✅ New additions start here */
+/* ✅ Layout wrapper */
 .about-content-wrapper {
   display: flex;
-  gap: 24px;
-  align-items: flex-start;
   justify-content: center;
+  align-items: flex-start;
   width: 100%;
   max-width: 1400px;
-  flex-wrap: wrap;
+  gap: 24px;
+}
+
+/* Center summary flexibly */
+.summary {
+  flex: 1;
 }
 
 /* Right-side Certifications panel */
 .certification-panel {
-  min-width: 250px;
+  width: 280px;
   background: #2a2a2a;
   padding: 24px;
   border-radius: 16px;
   color: #ffffff;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  align-self: flex-start;
 }
 
 .certification-panel h2 {
@@ -85,4 +90,60 @@
 
 .certification-panel a:hover {
   text-decoration: underline;
+}
+
+
+
+
+
+
+/* Skills section wrapper aligned to the left */
+.skills-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+/* Skills panel (left side container) */
+.skills-panel {
+  background: linear-gradient(135deg, #1f1f1f, #2c2e30);
+  border-radius: 16px;
+  padding: 24px;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  min-width: 300px;
+}
+
+/* Section title */
+.skills-heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #00d8ff;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #00d8ff;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+/* Individual category card */
+.skill-category-card {
+  margin-bottom: 16px;
+}
+
+/* Category title */
+.skill-category-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #00d8ff;
+  margin-bottom: 6px;
+}
+
+/* Comma-separated skill list */
+.skill-list {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #e0e0e0;
 }
