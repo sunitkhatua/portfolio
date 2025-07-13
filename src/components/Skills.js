@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import SkillsCard from "./SkillsCard";
-import "./AboutContentStyles.css";
-
+import "./AboutContentStyles.css"
 const Skills = () => {
+  console.log("🧠 Skills component mounted");
+
   const [skillsData, setSkillsData] = useState([]);
   const email = "sunitkhatua320@gmail.com";
 

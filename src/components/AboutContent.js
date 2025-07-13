@@ -22,6 +22,7 @@ const AboutContent = () => {
         <AboutCard
           text={otherData.summary}
           certifications={otherData.certifications}
+          awards={otherData.awards}
         />
       ) : (
         <p>No Other Details found</p>
